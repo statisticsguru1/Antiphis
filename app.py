@@ -5,6 +5,7 @@ import tensorflow as tf
 import numpy as np
 import pickle
 import json
+import shiny
 from shiny import App, render, ui,reactive, ui,run_app
 from htmltools import TagList, div
 
@@ -97,14 +98,19 @@ def server(input, output, session):
     @reactive.event(input.Go)
     def extract_features():
         url = input.url()
-        # initialize 
+        # initialize
+        print("Initializing LexicalURLFeature extractor")
         lexicalinst=LexicalURLFeature(url)
+        print("Initializing ContentFeature extractor")
         contentinst=ContentFeatures(url,vd=vd,sf=sf)
+        print("Initializing HostFeature extractor")
         hostinst=HostFeatures(url)
         # get features
+        print("Getting features from feature extractor classes")
         lexical=lexicalinst.run()
         content=contentinst.run()
         host=hostinst.run()
+        print("Data preparation complete")
         return [lexical,content,host]
       
       
@@ -126,42 +132,49 @@ def server(input, output, session):
           dat[column] = 0
       # remove any extra category not seen during training
       dat=dat[train_dummies_columns] 
+      print("Combining features complete")
       return dat
     
     @reactive.Calc
     def Ann_pred(): 
       dat=combined_features()
       ANNpred=np.argmax(ANN.predict(np.asarray(dat).astype(np.int)),axis=1)
+      print("Ann prediction complete")
       return to_categorical(ANNpred)
     
     @reactive.Calc
     def svc_pred(): 
       dat=combined_features()
       svcpred=svc.predict(dat)
+      print("SVC prediction complete")
       return to_categorical(svcpred)
     
     @reactive.Calc
     def boosted_pred(): 
       dat=combined_features()
       boostedpred=boosted.predict(dat)
+      print("boosted prediction complete")
       return to_categorical(boostedpred)
     
     @reactive.Calc
     def DT_pred(): 
       dat=combined_features()
       DTpred=DT.predict(dat)
+      print("DT prediction complete")
       return to_categorical(DTpred)
 
     @reactive.Calc
     def KNN_pred(): 
       dat=combined_features()
       KNNpred=KNN.predict(dat)
+      print("KNN prediction complete")
       return to_categorical(KNNpred)
 
     @reactive.Calc
     def RF_pred(): 
       dat=combined_features()
       RFpred=RF.predict(dat)
+      print("RF prediction complete")
       return to_categorical(RFpred)
 
     @output
