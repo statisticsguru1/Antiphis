@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "locale": "en_US.UTF-8",
+  "metadata": {
+    "appmode": "python-shiny",
+    "entrypoint": "app"
+  },
+  "python": {
+    "version": "3.10.8",
+    "package_manager": {
+      "name": "pip",
+      "version": "23.1.2",
+      "package_file": "requirements.txt"
+    }
+  },
+  "files": {
+    "requirements.txt": {
+      "checksum": "4d6ef69cf74d8bd0d33230c4ff8287c9"
+    },
+    "DT.pkl": {
+      "checksum": "9d33648e5a365b30b86ffb53b68a97cc"
+    },
+    "KNNmod.pkl": {
+      "checksum": "5875de505c22367ed64f142117c630af"
+    },
+    "RF.pkl": {
+      "checksum": "9c3edfc65f6b90a4c24fd5cb1ca6ced1"
+    },
+    "app.py": {
+      "checksum": "fe8a9d51f58301d9514d561e893141f0"
+    },
+    "boosted.pkl": {
+      "checksum": "8770160b4d4b88d18626e6a8982aa397"
+    },
+    "get__features.py": {
+      "checksum": "2089f6e0014d382bffbc105e22c8236d"
+    },
+    "model.h5": {
+      "checksum": "61000a7ea7912a4a7f7df909595b792f"
+    },
+    "overall.json": {
+      "checksum": "6b87dd4d80334da99725a2b5c7de391e"
+    },
+    "svcmodel.pkl": {
+      "checksum": "298f2c970ae55c17d7b397ce0fd38676"
+    },
+    "train_columns.json": {
+      "checksum": "19c603495b8fc41e0d5057950293d1d2"
+    }
+  }
+}
